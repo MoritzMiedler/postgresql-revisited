@@ -3,13 +3,12 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/cocktails', (req, res) => {
-  try {
-    res.status(200).json(getFruits(req.query));
-  } catch (error) {
-    res.status(500).end();
-    console.error(error);
-  }
-});
+router.get(
+  '/cocktails/:id',
+  asyncHandler(async (req, res) => {
+    const result = await getCocktails(req.params.id);
+    res.status(result.code).json(result);
+  }),
+);
 
 module.exports = router;
