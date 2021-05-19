@@ -5,3 +5,15 @@ GET http://127.0.0.1:3000/cocktails/Alice/zutaten
 GET http://127.0.0.1:3000/cocktails/7.2
 ###
 DELETE http://127.0.0.1:3000/cocktail/Adonis
+###
+POST http://127.0.0.1:3000/cocktail
+Content-Type: application/json
+
+{
+    "cname":"htlcocktail",
+"preis":6.9,
+"zubereitung":"Schülertränen langsam mit dem Spar-Energy vermischen und Eis hinzufügen.", 
+"kid":2, 
+"zgid":1, 
+"sgid":3
+}

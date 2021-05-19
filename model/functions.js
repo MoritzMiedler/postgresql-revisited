@@ -43,7 +43,18 @@ async function getAllCocktails() {
       status: 500,
     };
   }
+
+  async function addCocktail(cname, preis, zubereitung, kid, zgid, sgid) {
+    await db.query('insert into cocktail(cname, preis, zubereitung, kid, zgid, sgid) values ($1, $2, $3, $4, $5, $6)', [cname, preis, zubereitung, kid, zgid, sgid]);
+  
+    const { rows } = await db.query('select * from cocktail');
+    return {
+      data: `Inserted ${rows.length}`,
+      status: 200,
+    };
+  }
+  
   
 
 
-  module.exports = { getAllCocktails,getCocktailByName,getCocktailCheaperThan,deleteCocktail}
+  module.exports = { getAllCocktails,getCocktailByName,getCocktailCheaperThan,deleteCocktail,addCocktail}
