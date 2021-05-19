@@ -1,13 +1,17 @@
 const express = require('express');
-const 
-// const asyncHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler');
 
 const router = express.Router();
 
+const { getAllCocktails,} = require('../model/functions.js');
+// const asyncHandler = require('express-async-handler');
+
+
+
 router.get(
-  '/cocktails',
+  '/allCocktails',
   asyncHandler(async (req, res) => {
-    const result = await getCocktails();
+    const result = await getAllCocktails();
     res.status(result.code).json(result);
   }),
 );
