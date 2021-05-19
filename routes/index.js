@@ -9,11 +9,18 @@ const { getAllCocktails,} = require('../model/functions.js');
 
 
 router.get(
-  '/allCocktails',
+  '/cocktails',
   asyncHandler(async (req, res) => {
     const result = await getAllCocktails();
     res.status(result.status).send(result.data);
   }),
 );
 
+router.get(
+  '/cocktails/:name/zutaten',
+  asyncHandler(async (req, res) => {
+    const result = await getCocktailByName(req.params.name);
+    res.status(result.status).send(result.data);
+  }),
+);
 module.exports = router;

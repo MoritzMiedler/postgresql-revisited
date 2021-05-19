@@ -8,5 +8,9 @@ async function getAllCocktails() {
     };
   }
 
+  async function getCocktailByName(){
+      
+  }
+
 
   module.exports = { getAllCocktails,}
