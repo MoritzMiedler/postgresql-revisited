@@ -54,7 +54,17 @@ async function getAllCocktails() {
     };
   }
   
+  async function updateCocktail(name, data) {
+    const props = [];
+    for (const key in data) props.push(`${key}='${data[key]}'`);
   
+    const { rows } = await db.query(`Update cocktail set ${props.join(',')} where cname = $1 returning preis`, [name]);
+  
+    return {
+      data: `Updated to ${rows[0].preis}`,
+      status: 200,
+    };
+  }
 
 
-  module.exports = { getAllCocktails,getCocktailByName,getCocktailCheaperThan,deleteCocktail,addCocktail}
+  module.exports = { getAllCocktails,getCocktailByName,getCocktailCheaperThan,deleteCocktail,addCocktail,updateCocktail}

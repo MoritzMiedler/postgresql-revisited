@@ -17,3 +17,11 @@ Content-Type: application/json
 "zgid":1, 
 "sgid":3
 }
+
+###
+patch http://127.0.0.1:3000/cocktail/Alice
+Content-Type: application/json
+
+{
+    "preis": 2
+}
