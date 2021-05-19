@@ -12,7 +12,7 @@ router.get(
   '/allCocktails',
   asyncHandler(async (req, res) => {
     const result = await getAllCocktails();
-    res.status(result.code).json(result);
+    res.status(result.status).send(result.data);
   }),
 );
 
