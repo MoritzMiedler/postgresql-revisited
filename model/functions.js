@@ -26,5 +26,24 @@ async function getAllCocktails() {
     };
   }
 
+  async function deleteCocktail(name) {
+    const { rows } = await db.query('select cname from cocktail where cname = $1', [name]);
+    if (rows.length > 0) {
+      await db.query('delete from besteht where cid = (select cid from cocktail where cname = $1)', [name]);
+      await db.query('delete from bestellt where cid = (select cid from cocktail where cname = $1)', [name]);
+      await db.query('delete from cocktail where cname = $1', [name]);
+      return {
+        data: 'Deleted',
+        status: 200,
+      };
+    }
+    console.error(`Cocktail ${name} not found!`);
+    return {
+      data: `Cocktail ${name} not found!`,
+      status: 500,
+    };
+  }
+  
 
-  module.exports = { getAllCocktails,getCocktailByName,getCocktailCheaperThan}
+
+  module.exports = { getAllCocktails,getCocktailByName,getCocktailCheaperThan,deleteCocktail}
